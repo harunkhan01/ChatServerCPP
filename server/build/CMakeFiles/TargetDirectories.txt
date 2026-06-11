@@ -1,0 +1,3 @@
+/home/swanfinder/cpp_projects/ChatServerCPP/server/build/CMakeFiles/server.dir
+/home/swanfinder/cpp_projects/ChatServerCPP/server/build/CMakeFiles/edit_cache.dir
+/home/swanfinder/cpp_projects/ChatServerCPP/server/build/CMakeFiles/rebuild_cache.dir
