@@ -1,14 +1,19 @@
 #pragma once
 
-#define MAX_THREADS 20
-
+#include <mutex>
 #include <string>
+#include <vector>
+
+const int number_of_workers = 0; 
 
 class Server{
 private:
+    int counter;
+    std::mutex mtx;
     int num_clients;
+    const int num_workers;
     std::string server_status;
-    const int max_threads;
+    std::vector work_queue;
 
 public:
 
@@ -20,4 +25,9 @@ public:
 
     void print_server_status();
 
+    /* Server entry point */
+    void Server::start_server();
+
+    /* Spin up worker threads */
+    void Server::spawn_workers();
 };
