@@ -3,17 +3,25 @@
 #include <mutex>
 #include <string>
 #include <vector>
+#include <condition_variable>
 
 const int number_of_workers = 0; 
 
 class Server{
 private:
     int counter;
+
     std::mutex mtx;
+
     int num_clients;
-    const int num_workers;
+
+    int num_workers;
+
     std::string server_status;
-    std::vector work_queue;
+
+    std::condition_variable cv;
+
+    std::vector<int> worker_queue;
 
 public:
 
@@ -30,4 +38,7 @@ public:
 
     /* Spin up worker threads */
     void Server::spawn_workers();
+
+    /* Worker waiting code */
+    void Server::worker_pool();
 };

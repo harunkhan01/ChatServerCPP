@@ -21,7 +21,7 @@ void Server::print_server_status(){
 
     std::cout << "Number of connected clients: " << num_clients << std::endl;
 
-    std::cout << "Maximum allowable threads: " << max_threads << std::endl;
+    std::cout << "Maximum allowable threads: " << num_workers << std::endl;
 
 }
 
@@ -29,13 +29,18 @@ void Server::start_server(){
     /* Begin thread management */
     this->spawn_workers();
     
-
 }
 
 void Server::spawn_workers(){
 
-    for (auto : num_workers){
-        std::thread t(target, this);
+    for (int i=0; i < this->num_workers; i++){
+        std::thread(&Server::worker_pool, this);
     }
 
+}
+
+void Server::worker_pool(){
+    
+    std::unique_lock<std::mutex> lock(mtx);
+    
 }
