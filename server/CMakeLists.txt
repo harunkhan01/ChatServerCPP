@@ -8,7 +8,6 @@ target_sources(server
     PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/server.cpp
-    
 )
 
 target_include_directories(server

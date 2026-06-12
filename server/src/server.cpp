@@ -7,7 +7,6 @@
 #include <sys/socket.h>
 
 #include "server.hpp"
-#include "thread_engine.hpp"
 
 /* Server Constructor */
 Server::Server() : counter(0), predicate(false), num_workers(number_of_workers), num_clients(0), server_status("healthy") {
@@ -65,6 +64,8 @@ void Server::serve_threads(int server_fd){
     /* We start our server session */
     while (1) {
         int client_fd = accept(server_fd, nullptr, nullptr);
+
+        std::cout << "Client connected!" << std::endl;
 
         recv(client_fd, client_data.data(), 100, 0);
 
