@@ -2,14 +2,19 @@
 
 #include <mutex>
 #include <string>
-#include <vector>
+#include <queue>
 #include <condition_variable>
 
-const int number_of_workers = 0; 
+const int listen_limit = 10;
+const int server_port = 8080;
+const int number_of_workers = 0;
+const std::string server_ip_address = "127.0.0.1";
 
 class Server{
 private:
     int counter;
+
+    bool predicate;
 
     std::mutex mtx;
 
@@ -21,7 +26,7 @@ private:
 
     std::condition_variable cv;
 
-    std::vector<int> worker_queue;
+    std::queue<int> worker_queue;
 
 public:
 
@@ -35,6 +40,12 @@ public:
 
     /* Server entry point */
     void Server::start_server();
+
+    /* Initialize server websocket */
+    int Server::create_socket();
+
+    /* Begin serving of thread instances */
+    void Server::serve_threads(int fd);
 
     /* Spin up worker threads */
     void Server::spawn_workers();
