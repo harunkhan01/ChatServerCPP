@@ -1,7 +1,4 @@
-
-
 #include "thread_engine.cpp"
-
 
 ThreadEngine::ThreadEngine(){;}
 

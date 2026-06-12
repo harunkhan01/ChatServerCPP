@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "server.hpp"
-// #include "thread_engine.hpp"
+#include "thread_engine.hpp"
 
 /* Server Constructor */
 Server::Server() : counter(0), num_workers(number_of_workers), num_clients(0), server_status("healthy") {
@@ -37,6 +37,5 @@ void Server::spawn_workers(){
     for (auto : num_workers){
         std::thread t(target, this);
     }
-    
 
 }
