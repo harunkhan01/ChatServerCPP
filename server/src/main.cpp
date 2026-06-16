@@ -5,11 +5,9 @@
 
 int main(){
 
-    std::cout << "Hello World" << std::endl;
-
     Server server_obj;
 
-    server_obj.print_server_status(); 
+    server_obj.start_server(); 
 
     return 0;
 

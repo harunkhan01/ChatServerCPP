@@ -76,24 +76,27 @@ void Server::serve_threads(int server_fd){
 }
 
 void Server::spawn_workers(){
-
+    /* Create workers and send them to hell */
     for (int i=0; i < this->num_workers; i++){
         std::thread(&Server::worker_pool, this);
     }
-
 }
 
 void Server::worker_pool(){
     
-    std::unique_lock<std::mutex> lock(mtx);
+    while (1){
+        std::unique_lock<std::mutex> lock(mtx);
 
-    while(!this->predicate){
-        this->cv.wait(lock);
+        while(!this->predicate){
+            this->cv.wait(lock);
+        }
+
+        /* pull from from of worker queue */
+        int client_fd = this->worker_queue.front();
+
+        lock.unlock();
+
+        /* Launch subscript for handling client process */
+        /* EMPTY FOR NOW */    
     }
-
-    /* pull from worker queue -- its a vector right now */
-
-
-    lock.unlock();
-    
 }

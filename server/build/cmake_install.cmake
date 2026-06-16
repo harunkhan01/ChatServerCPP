@@ -1,4 +1,4 @@
-# Install script for directory: /home/swanfinder/cpp_projects/ChatServerCPP/server
+# Install script for directory: /home/harun/c_learning/ChatServerCPP/server
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/swanfinder/cpp_projects/ChatServerCPP/server/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/harun/c_learning/ChatServerCPP/server/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

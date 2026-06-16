@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/swanfinder/cpp_projects/ChatServerCPP/server
+CMAKE_SOURCE_DIR = /home/harun/c_learning/ChatServerCPP/server
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/swanfinder/cpp_projects/ChatServerCPP/server/build
+CMAKE_BINARY_DIR = /home/harun/c_learning/ChatServerCPP/server/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/swanfinder/cpp_projects/ChatServerCPP/server/build/CMakeFiles /home/swanfinder/cpp_projects/ChatServerCPP/server/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harun/c_learning/ChatServerCPP/server/build/CMakeFiles /home/harun/c_learning/ChatServerCPP/server/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/swanfinder/cpp_projects/ChatServerCPP/server/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harun/c_learning/ChatServerCPP/server/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

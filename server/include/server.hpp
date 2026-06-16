@@ -39,17 +39,17 @@ public:
     void print_server_status();
 
     /* Server entry point */
-    void Server::start_server();
+    void start_server();
 
     /* Initialize server websocket */
-    int Server::create_socket();
+    int create_socket();
 
     /* Begin serving of thread instances */
-    void Server::serve_threads(int fd);
+    void serve_threads(int fd);
 
     /* Spin up worker threads */
-    void Server::spawn_workers();
+    void spawn_workers();
 
     /* Worker waiting code */
-    void Server::worker_pool();
+    void worker_pool();
 };

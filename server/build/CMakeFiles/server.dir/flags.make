@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/swanfinder/cpp_projects/ChatServerCPP/server/include
+CXX_INCLUDES = -I/home/harun/c_learning/ChatServerCPP/server/include
 
 CXX_FLAGS = 
 
