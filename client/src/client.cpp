@@ -1,3 +1,5 @@
+#include <vector>
+#include <string>
 #include <iostream>
 
 #include <arpa/inet.h>
@@ -36,6 +38,31 @@ void ClientApp::connect_to_server(){
         exit(1);
     }
 
-    std::cout << "Successful connection to server. Exiting now!" << std::endl;
+    std::cout << "Successful connection to server!" << std::endl;
+
+    chat_with_server(client_fd);
+}
+
+
+void ClientApp::chat_with_server(int fd){
+
+    int err;
+    std::string message;
+
+    while (1){
+
+        std::cin >> message;
+
+        err = send(fd, &message, message.size(), 0);
+
+        if (err == -1){
+            std::cout << "Failed to send message." << std::endl;
+        }
+
+        std::cout << "Successfully sent message!" << std::endl;
+
+    }
+
+    
 
 }

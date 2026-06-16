@@ -19,4 +19,5 @@ public:
 
     void connect_to_server();
 
+    void chat_with_server(int fd);
 };

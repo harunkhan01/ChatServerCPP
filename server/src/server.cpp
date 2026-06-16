@@ -57,6 +57,7 @@ int Server::create_socket(){
 
 void Server::serve_threads(int server_fd){
 
+    int err;
     std::vector<char> client_data;
 
     listen(server_fd, listen_limit);
@@ -67,7 +68,11 @@ void Server::serve_threads(int server_fd){
 
         std::cout << "Client connected!" << std::endl;
 
-        recv(client_fd, client_data.data(), 100, 0);
+        err = recv(client_fd, client_data.data(), 100, 0);
+
+        if (err == -1){
+            std::cout << "Error when receiving client message." << std::endl;
+        }
 
         for (auto ch : client_data){
             std::cout << ch << std::endl;
