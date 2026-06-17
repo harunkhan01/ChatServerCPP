@@ -51,9 +51,10 @@ void ClientApp::chat_with_server(int fd){
 
     while (1){
 
+        std::cout << "Send message to server: ";
         std::cin >> message;
 
-        err = send(fd, &message, message.size(), 0);
+        err = send(fd, message.data(), message.size(), 0);
 
         if (err == -1){
             std::cout << "Failed to send message." << std::endl;
@@ -61,8 +62,8 @@ void ClientApp::chat_with_server(int fd){
 
         std::cout << "Successfully sent message!" << std::endl;
 
-    }
+        std::cout << "Sent " << err << " number of bytes" << std::endl;
 
-    
+    }
 
 }

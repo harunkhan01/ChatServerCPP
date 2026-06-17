@@ -9,7 +9,7 @@
 #include "server.hpp"
 
 /* Server Constructor */
-Server::Server() : counter(0), predicate(false), num_workers(number_of_workers), num_clients(0), server_status("healthy") {
+Server::Server() : counter(0), num_workers(number_of_workers), num_clients(0), server_status("healthy"), printing_press("") {
     ;
 }
 
@@ -58,9 +58,10 @@ int Server::create_socket(){
 void Server::serve_threads(int server_fd){
 
     int err;
-    std::vector<char> client_data;
 
     listen(server_fd, listen_limit);
+
+    std::cout << "Started up server!" << std::endl;
 
     /* We start our server session */
     while (1) {
@@ -68,22 +69,27 @@ void Server::serve_threads(int server_fd){
 
         std::cout << "Client connected!" << std::endl;
 
-        err = recv(client_fd, client_data.data(), 100, 0);
+        /*
+        We want to add this client_fd to the queue and then
+        unlock the mutex for a thread to acquire the lock and
+        proceed in the critical section
+        */
 
-        if (err == -1){
-            std::cout << "Error when receiving client message." << std::endl;
-        }
+        std::unique_lock<std::mutex> lock(this->mtx);
 
-        for (auto ch : client_data){
-            std::cout << ch << std::endl;
-        }
+        this->worker_queue.push(client_fd);
+
+        lock.unlock();
+
+        this->cv.notify_one();
+
     }
 }
 
 void Server::spawn_workers(){
     /* Create workers and send them to hell */
     for (int i=0; i < this->num_workers; i++){
-        std::thread(&Server::worker_pool, this);
+        this->threads.emplace_back(&Server::worker_pool, this);
     }
 }
 
@@ -92,9 +98,11 @@ void Server::worker_pool(){
     while (1){
         std::unique_lock<std::mutex> lock(mtx);
 
-        while(!this->predicate){
-            this->cv.wait(lock);
-        }
+        this->cv.wait(lock, [this] {
+            return !worker_queue.empty();
+        });
+
+        std::cout << "Worker woke up!" << std::endl;
 
         /* pull from from of worker queue */
         int client_fd = this->worker_queue.front();
@@ -103,5 +111,7 @@ void Server::worker_pool(){
 
         /* Launch subscript for handling client process */
         /* EMPTY FOR NOW */    
+
+        std::cout << "Hello from thread" << std::endl;
     }
 }

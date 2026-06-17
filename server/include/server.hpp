@@ -1,6 +1,7 @@
 #pragma once
 
 #include <mutex>
+#include <thread>
 #include <string>
 #include <queue>
 #include <condition_variable>
@@ -14,8 +15,6 @@ class Server{
 private:
     int counter;
 
-    bool predicate;
-
     std::mutex mtx;
 
     int num_clients;
@@ -27,6 +26,10 @@ private:
     std::condition_variable cv;
 
     std::queue<int> worker_queue;
+
+    std::vector<std::thread> threads;
+
+    std::string printing_press;
 
 public:
 
