@@ -88,6 +88,9 @@ void Server::serve_threads(int server_fd){
 
 void Server::spawn_workers(){
     /* Create workers and send them to hell */
+
+    std::cout << "Starting " << this->num_workers << " number of workers!" << std::endl;
+
     for (int i=0; i < this->num_workers; i++){
         this->threads.emplace_back(&Server::worker_pool, this);
     }

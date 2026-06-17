@@ -8,7 +8,7 @@
 
 const int listen_limit = 10;
 const int server_port = 8080;
-const int number_of_workers = 0;
+const int number_of_workers = 10;
 const std::string server_ip_address = "127.0.0.1";
 
 class Server{
