@@ -104,17 +104,43 @@ void Server::worker_pool(){
         this->cv.wait(lock, [this] {
             return !worker_queue.empty();
         });
-
-        std::cout << "Worker woke up!" << std::endl;
-
+        
         /* pull from from of worker queue */
         int client_fd = this->worker_queue.front();
 
         lock.unlock();
 
         /* Launch subscript for handling client process */
-        /* EMPTY FOR NOW */    
+        this->thread_handle_client(client_fd);
+    }
+}
 
-        std::cout << "Hello from thread" << std::endl;
+void Server::thread_handle_client(int client_fd){
+
+    int err;
+    char data[250];
+
+    std::cout << "Thread is handling connection with client: " << client_fd << std::endl;
+
+    while (1){
+        err = recv(client_fd, data, sizeof(data), 0);
+
+        if (err == 0){
+            std::cout << "Client: " << client_fd << " closed their connection. Exiting loop!" << std::endl;
+            break;
+        } else if (err == -1){
+            std::cout << "Error on recv() call. Exiting..." << std::endl;
+            break;
+        }
+
+        std::cout << "Successfully received message from client!" << std::endl;
+
+        std::cout << "Messaged received: ";
+
+        for (int i=0; i < err; i++){
+            std::cout << data[i];
+        }
+
+        std::cout << "\n";
     }
 }

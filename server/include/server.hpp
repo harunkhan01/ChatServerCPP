@@ -55,4 +55,7 @@ public:
 
     /* Worker waiting code */
     void worker_pool();
+
+    /* Thread executes this code upon wake up */
+    void thread_handle_client(int client_fd);
 };
