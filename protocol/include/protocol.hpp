@@ -29,8 +29,6 @@ public:
     /* Destructor for the Fremen Frame */
     ~FremenFrame();
 
-    
-
 }; 
 
 
@@ -40,6 +38,15 @@ private:
 
 public:
 
+    /* Constructor for the Fremen Protocol */
+    FremenProtocol();
 
+    /* Destructor for the Fremen Protocol */
+    ~FremenProtocol();
 
+    /* Send a Fremen Frame */
+    void send_frame(int send_fd, FremenFrame fremen_frame);
+
+    /* Receive a Fremen Frame */
+    void receive_frame(int receive_fd);
 };
