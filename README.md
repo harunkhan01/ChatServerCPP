@@ -1,5 +1,7 @@
-## Chat Server in C++
+## Central node discovery
 
-This repo is dedicated to a custom implementation of an application layer protocol with a chat server that accepts and connects clients using multi-threading and thread-safety features. 
+This program implements a way to determine what devices are connected to your network. This requires that each device be running an instance of this code. The purpose is to know whether
+a device is on/off and/or consuming power. 
 
-This chat server calls crypto libraries to perform DHKE and symmetric key based communication. 
+A custom application layer protocol is built over TCP connections that utilizes multi-threading to handle client load while employing thread-safety features. This library will eventually 
+implement a cryptographic layer to enable DHKE aand symmetric key based communication.
