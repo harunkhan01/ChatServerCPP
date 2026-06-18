@@ -60,9 +60,7 @@ void ClientApp::chat_with_server(int fd){
             std::cout << "Failed to send message." << std::endl;
         }
 
-        std::cout << "Successfully sent message!" << std::endl;
-
-        std::cout << "Sent " << err << " number of bytes" << std::endl;
+        std::cout << "Message to server has been sent!" << std::endl;
 
     }
 
