@@ -15,3 +15,14 @@ Specification:
 #include "protocol.hpp"
 
 
+FremenProtocol::FremenProtocol(){;}
+
+FremenProtocol::~FremenProtocol(){;}
+
+void FremenProtocol::send_frame(int send_fd, FremenFrame frame){
+    ;
+}
+
+void FremenProtocol::receive_frame(int receive_fd){
+    ; 
+}
